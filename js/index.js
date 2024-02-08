@@ -1,4 +1,4 @@
-console.log("@@ vinvulamos archivo")
+console.log("@@ vinculamos archivo")
 
 const formulario = document.getElementById('formulario')
 const listaTareas =document.getElementById('lista-tareas')
