@@ -6,6 +6,7 @@ const templateTarea = document.getElementById('templateTarea').content
 const fragment = document.createDocumentFragment()
 
 let tareas = {}
+
 document.addEventListener('DOMContentLoaded', () =>{
     if (localStorage.getItem('tareas')){
         tareas = JSON.parse(localStorage.getItem('tareas'))
@@ -18,6 +19,30 @@ formulario.addEventListener('submit', (e) =>{
     setTarea(e)
 
 })
+
+listaTareas.addEventListener('click', (e) => {
+    btnAcciones(e)
+})
+
+const btnAcciones = e =>{
+    if (e.target.classList.contains('fa-check-circle')){
+        tareas[e.target.dataset.id].estado = true
+        pintarTareas()
+    }
+
+    if (e.target.classList.contains('fa-minus-circle')){
+        delete tareas[e.target.dataset.id]
+        pintarTareas()
+    }
+
+    if (e.target.classList.contains('fa-undo-alt')){
+        tareas[e.target.dataset.id].estado = false
+        pintarTareas()
+    }
+
+    e.stopPropagation()
+
+}
 
 const setTarea = e => {
     const texto =e.target.querySelector('input').value
